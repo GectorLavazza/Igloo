@@ -1,14 +1,16 @@
 import pygame
 from sprite import Sprite
-from settings import RATIO
+from settings import RATIO, SW, SH
 
 
 class Light(Sprite):
-    def __init__(self, radius, pos, color, density, *group):
+    def __init__(self, radius, pos, color, density, darkness,  *group):
         super().__init__(*group)
 
         self.color = color
         self.density = density
+
+        self.darkness = darkness
 
         self.r = radius
         self.w = self.h = self.r * 2
@@ -16,6 +18,8 @@ class Light(Sprite):
         self.image = self.get_image()
         self.rect = self.image.get_rect()
         self.rect.center = pos[0] * RATIO, pos[1] * RATIO
+
+        self.enlight()
 
         self.max_playback = 30
         self.playback = self.max_playback
@@ -37,3 +41,19 @@ class Light(Sprite):
         image = pygame.transform.scale_by(image, RATIO)
 
         return image
+
+    def enlight(self):
+        color = pygame.Color(0, 0, 0, 0)
+        center = self.rect.center
+        radius = self.r * RATIO * 1.2
+        pygame.draw.circle(self.darkness.surface, color, center, radius)
+
+
+class Darkness:
+    def __init__(self):
+        self.surface = pygame.Surface((SW, SH)).convert_alpha()
+        self.surface.set_alpha(70)
+        self.surface.fill(pygame.Color(0, 0, 0))
+
+    def draw(self, screen):
+        screen.blit(self.surface, (0, 0))

@@ -2,7 +2,7 @@ import random
 
 import pygame
 import time
-from settings import set_screen, FPS, SW, SH, RATIO
+from settings import set_screen, FPS, SW, SH, RATIO, play_music
 from particles import create_particles, generate_particles
 from igloo import Igloo
 from light import Light
@@ -49,6 +49,8 @@ for pos in lp:
 
 light = Light(8, (240, 151), (153, 201, 179), 0.5, light_g)
 light = Light(20, (455, 37), (153, 201, 179), 0.2, light_g)
+
+play_music('igloo', volume=1)
 
 while running:
 

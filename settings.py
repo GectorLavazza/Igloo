@@ -37,7 +37,7 @@ def play_sound(filename, volume=0.5):
 
 def play_music(filename, volume=0.5):
     pygame.mixer.music.stop()
-    pygame.mixer.music.load(f'assets/music/{filename}.mp3')
+    pygame.mixer.music.load(f'assets/music/{filename}.wav')
     pygame.mixer.music.set_volume(volume)
     pygame.mixer.music.play(-1)
 
